@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Welcome to VolleyDB</h1>
+<p>Please sign in.</p>
+
+<ul>
+    {% for row in rows %}
+        <li>{{ row.0 }} - {{ row.1 }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
