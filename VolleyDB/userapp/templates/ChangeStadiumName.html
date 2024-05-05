@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Please Enter Old And New Stadium Information</h1>
+
+<form>
+    <label for="oldname">Old Stadium Name:</label>
+    <select name="oldname">
+        {% for stadium in stadiums %}
+            <option value="{{ stadium }}">{{ stadium }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="newname">New Stadium Name:</label><br>
+    <input type="text" id="newname" name="newname" required><br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

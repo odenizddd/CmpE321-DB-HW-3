@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Welcome Esteemed Player</h1>
+
+<h3>Players that you've played with at least once.</h3>
+
+<ul>
+{% for player in players %}
+    <li>{{ player.0 }} {{player.1}}</li>
+{% endfor %}
+</ul>
+
+<h3>(Average) Height of the player you played with the most:</h3>
+
+<p>{{ height }}</p>
+
+</body>
+</html>

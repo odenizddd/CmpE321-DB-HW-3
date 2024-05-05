@@ -3,13 +3,15 @@
 <body>
 
 <h1>Welcome to VolleyDB</h1>
-<p>Please sign in.</p>
+<h3>Please sign in.</h3>
 
-<ul>
-    {% for row in rows %}
-        <li>{{ row.0 }} - {{ row.1 }}</li>
-    {% endfor %}
-</ul>
+<form>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Submit">
+</form>
 
 </body>
 </html>
