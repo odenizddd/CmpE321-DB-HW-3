@@ -67,7 +67,43 @@ def jury(request, username):
     return render(request, 'Jury.html', {"rating_count": data[0], "rating_average": data[1], "not_rated": [row[0] for row in not_rated]}) 
 
 def coach(request, username):
-    return render(request, 'Coach.html')
+    if (request.GET.get("position") != None):
+        position = request.GET.get("position")
+        players = request.GET.getlist("players")
+
+        """ if len(players) == 6: 
+            with connection.cursor() as cursor:
+                query = "INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('50', '5', %s, %s);"
+                cursor.executemany(query, [player[3] for player in players], position)
+                connection.commit() """
+
+    if (request.GET.get("session_ID") != None):
+        session_ID = request.GET.get("session_ID")
+        with connection.cursor() as cursor:
+            query = "DELETE FROM MatchSession MS WHERE MS.session_ID = %s;"
+            cursor.execute(query, session_ID)
+            connection.commit()
+
+    with connection.cursor() as cursor:
+        query = f"""SELECT S.stadium_name, S.stadium_country FROM Stadium S;"""
+        cursor.execute(query)
+        stadiums = cursor.fetchall()
+
+        query = f"""SELECT MS.session_ID FROM MatchSession MS, Team T
+                    WHERE T.coach_username="{username}" AND T.team_ID = MS.team_ID 
+                    AND STR_TO_DATE(T.contract_start, "%d.%m.%Y") < NOW()
+                    AND STR_TO_DATE(T.contract_finish, "%d.%m.%Y") > NOW();"""
+        cursor.execute(query)
+        directing_matches = cursor.fetchall()
+
+        query = f"""SELECT P.name, P.surname P.username FROM Player P, PlayerTeams PT, Team T
+                WHERE T.coach_username = "{username}" AND T.team_ID = PT.team 
+                AND PT.username = P.username AND STR_TO_DATE(T.contract_start, "%d.%m.%Y") < NOW()
+                AND STR_TO_DATE(T.contract_finish, "%d.%m.%Y") > NOW();"""
+        cursor.execute(query)
+        available_players = cursor.fetchall()
+
+    return render(request, 'Coach.html', {"stadiums": stadiums, "available_players": available_players, "directing_matches": [match[0] for match in directing_matches]})
 
 def addPlayer(request):
     if (request.GET.get("name") != None):

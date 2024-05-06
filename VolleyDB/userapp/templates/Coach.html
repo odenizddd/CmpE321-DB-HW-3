@@ -4,5 +4,37 @@
 
 <h1>Welcome Esteemed Coach</h1>
 
+<h3>All Existing Stadium Names and Countries: </h3>
+
+<ul>
+{% for stadium in stadiums %}
+    <li>{{ stadium.0 }} {{stadium.1}}</li>
+{% endfor %}
+</ul>
+
+<h3>Delete a Match Session: </h3>
+
+<form>
+    <label for="session_ID">Choose a session:</label>
+    <select id="session_ID" name="session_ID">
+        {% for session_ID in directing_matches %}
+            <option value="{{ session_ID }}">{{ session_ID }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+
+<h3>Create a New Squad: </h3>
+
+<form>
+    <label for="players">Your Available Players:</label>
+    {% for player in available_players %}
+        <input type="checkbox" name="team" value="{{team}}" class="team_button">
+        <label for="team">{{team}}</label><br>
+    {% endfor %}
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
 </body>
 </html>

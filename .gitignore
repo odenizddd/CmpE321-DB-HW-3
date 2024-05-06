@@ -3,3 +3,8 @@ CMPE321_Project3_2024.pdf
 Sample Data - Project3.xlsx
 cmpe-321-hw3
 __pycache__
+bin
+lib
+pyenv.cfg
+lib64
+pyvenv.cfg
