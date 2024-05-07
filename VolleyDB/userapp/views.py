@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.db import connection
+import django.db.utils
 
 def login(request):
 
@@ -67,9 +68,12 @@ def jury(request, username):
     return render(request, 'Jury.html', {"rating_count": data[0], "rating_average": data[1], "not_rated": [row[0] for row in not_rated]}) 
 
 def coach(request, username):
-    if (request.GET.get("position") != None):
-        position = request.GET.get("position")
-        players = request.GET.getlist("players")
+    error = None
+
+    if (request.GET.get("session_ID") != None):
+        session_ID = request.GET.get("session_ID")
+        players = request.GET.getlist("player")
+        positions = [request.GET.get(f"position{i}") for i in range(1,7)]
 
         """ if len(players) == 6: 
             with connection.cursor() as cursor:
@@ -77,15 +81,32 @@ def coach(request, username):
                 cursor.executemany(query, [player[3] for player in players], position)
                 connection.commit() """
 
-    if (request.GET.get("session_ID") != None):
-        session_ID = request.GET.get("session_ID")
+    if (request.GET.get("delete_ID") != None):
+        delete_ID = request.GET.get("delete_ID")
         with connection.cursor() as cursor:
             query = "DELETE FROM MatchSession MS WHERE MS.session_ID = %s;"
-            cursor.execute(query, session_ID)
+            cursor.execute(query, delete_ID)
             connection.commit()
+    
+    if (request.GET.get("stadium_ID") != None):
+        stadium_ID = request.GET.get("stadium_ID")
+        y, m, d = request.GET.get("date").split("-")
+        date = f"{d}.{m}.{y}"
+        slot = request.GET.get("slot")
+        jury = request.GET.get("jury")
+        team_ID = request.GET.get("team_ID")
+        next_session_ID = request.GET.get("next_session_ID")
+
+        with connection.cursor() as cursor:
+            try:
+                query = f"INSERT INTO MatchSession (session_ID, stadium_ID, date, time_slot, assigned_jury_username, team_ID, rating) VALUES ({next_session_ID}, {stadium_ID}, '{date}', {slot}, '{jury}', {team_ID}, NULL)"
+                cursor.execute(query)
+                connection.commit()
+            except django.db.utils.DatabaseError as e:
+                error = e.__cause__
 
     with connection.cursor() as cursor:
-        query = f"""SELECT S.stadium_name, S.stadium_country FROM Stadium S;"""
+        query = f"""SELECT S.stadium_name, S.stadium_country, S.stadium_ID FROM Stadium S;"""
         cursor.execute(query)
         stadiums = cursor.fetchall()
 
@@ -96,14 +117,35 @@ def coach(request, username):
         cursor.execute(query)
         directing_matches = cursor.fetchall()
 
-        query = f"""SELECT P.name, P.surname P.username FROM Player P, PlayerTeams PT, Team T
+        query = f"""SELECT T.team_ID FROM Team T
+                    WHERE T.coach_username="{username}" 
+                    AND STR_TO_DATE(T.contract_start, "%d.%m.%Y") < NOW()
+                    AND STR_TO_DATE(T.contract_finish, "%d.%m.%Y") > NOW();"""
+        cursor.execute(query)
+        team_ID = cursor.fetchone()[0]
+
+        query = f"""SELECT P.name, P.surname, P.username FROM Player P, PlayerTeams PT, Team T
                 WHERE T.coach_username = "{username}" AND T.team_ID = PT.team 
                 AND PT.username = P.username AND STR_TO_DATE(T.contract_start, "%d.%m.%Y") < NOW()
                 AND STR_TO_DATE(T.contract_finish, "%d.%m.%Y") > NOW();"""
         cursor.execute(query)
         available_players = cursor.fetchall()
 
-    return render(request, 'Coach.html', {"stadiums": stadiums, "available_players": available_players, "directing_matches": [match[0] for match in directing_matches]})
+        query = f"""SELECT J.username, J.name, J.surname FROM Jury J;"""
+        cursor.execute(query)
+        juries = cursor.fetchall()
+
+        query = f"""SELECT MAX(session_ID) FROM MatchSession;"""
+        cursor.execute(query)
+        next_session_ID = cursor.fetchone()[0] + 1
+
+        query = f"""SELECT MS.session_ID FROM Team T, MatchSession MS
+                    WHERE T.coach_username="{username}" AND T.team_ID=MS.team_ID AND
+                    MS.session_ID NOT IN (SELECT SS.session_ID FROM SessionSquads SS WHERE SS.session_ID=MS.session_ID);"""
+        cursor.execute(query)
+        not_squaded = cursor.fetchall()
+
+    return render(request, 'Coach.html', {"stadiums": stadiums, "available_players": available_players, "directing_matches": [match[0] for match in directing_matches], "juries": juries, "team_ID": team_ID, "next_session_ID": next_session_ID, "error": error, "not_squaded": [row[0] for row in not_squaded]})
 
 def addPlayer(request):
     if (request.GET.get("name") != None):
