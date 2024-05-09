@@ -75,11 +75,14 @@ def coach(request, username):
         players = request.GET.getlist("player")
         positions = [request.GET.get(f"position{i}") for i in range(1,7)]
 
-        """ if len(players) == 6: 
-            with connection.cursor() as cursor:
-                query = "INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('50', '5', %s, %s);"
-                cursor.executemany(query, [player[3] for player in players], position)
-                connection.commit() """
+        with connection.cursor() as cursor:
+            try:
+                query = "INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES (%s, %s, %s);"
+                cursor.executemany(query, [(session_ID, player, position) for (player, position) in zip(players, positions)])
+                connection.commit()
+            except django.db.utils.DatabaseError as e:
+                error = e.__cause__
+                print(error)
 
     if (request.GET.get("delete_ID") != None):
         delete_ID = request.GET.get("delete_ID")

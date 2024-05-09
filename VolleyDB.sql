@@ -111,7 +111,7 @@ CREATE TABLE MatchSession
 
 CREATE TABLE SessionSquads 
 (
-    squad_ID	INT,
+    squad_ID	INT AUTO_INCREMENT,
     session_ID	INT,
     played_player_username	VARCHAR(512),
     position_ID	INT,
@@ -271,54 +271,54 @@ INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assi
 INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assigned_jury_username, rating) VALUES ('6', '0', '1', '1', '01.09.2022', 'm_sevinc', '4.6');
 INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assigned_jury_username, rating) VALUES ('7', '0', '2', '3', '02.05.2023', 'o_ozcelik', '4.7');
 INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assigned_jury_username, rating) VALUES ('8', '1', '0', '1', '10.03.2024', 'o_ozcelik', '4.5');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('1', '0', 'g_orge', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('2', '0', 'c_ozbay', '1');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('3', '0', 'm_vargas', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('4', '0', 'h_baladin', '3');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('5', '0', 'a_kalac', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('6', '0', 'ee_dundar', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('7', '1', 'c_ozbay', '1');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('8', '1', 'm_vargas', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('9', '1', 'i_aydin', '1');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('10', '1', 'a_kalac', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('11', '1', 's_akoz', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('12', '1', 'd_cebecioglu', '3');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('13', '2', 'g_orge', '3');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('14', '2', 'm_vargas', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('15', '2', 'c_ozbay', '1');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('16', '2', 'a_kalac', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('17', '2', 's_akoz', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('18', '2', 'a_aykac', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('19', '3', 'ee_dundar', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('20', '3', 'h_baladin', '3');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('21', '3', 'z_gunes', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('22', '3', 'i_aydin', '3');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('23', '3', 'e_karakurt', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('24', '3', 'k_akman', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('25', '4', 'user_2826', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('26', '4', 'user_9501', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('27', '4', 'user_3556', '1');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('28', '4', 'user_7934', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('29', '4', 'user_4163', '3');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('30', '4', 'user_2835', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('31', '5', 'user_2826', '1');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('32', '5', 'user_9501', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('33', '5', 'user_3556', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('34', '5', 'user_7934', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('35', '5', 'user_4163', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('36', '5', 'user_2835', '3');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('37', '6', 'g_orge', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('38', '6', 'm_vargas', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('39', '6', 'c_ozbay', '1');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('40', '6', 'a_kalac', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('41', '6', 'e_karakurt', '3');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('42', '6', 'a_aykac', '0');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('43', '7', 'g_orge', '3');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('44', '7', 'm_vargas', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('45', '7', 'c_ozbay', '1');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('46', '7', 'a_kalac', '4');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('47', '7', 'e_karakurt', '2');
-INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('48', '7', 'a_aykac', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ('0', 'g_orge', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ('0', 'c_ozbay', '1');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ('0', 'm_vargas', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ('0', 'h_baladin', '3');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ('0', 'a_kalac', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ('0', 'ee_dundar', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ('1', 'c_ozbay', '1');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ('1', 'm_vargas', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ('1', 'i_aydin', '1');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '1', 'a_kalac', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '1', 's_akoz', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '1', 'd_cebecioglu', '3');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '2', 'g_orge', '3');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '2', 'm_vargas', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '2', 'c_ozbay', '1');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '2', 'a_kalac', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '2', 's_akoz', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '2', 'a_aykac', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '3', 'ee_dundar', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '3', 'h_baladin', '3');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '3', 'z_gunes', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '3', 'i_aydin', '3');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '3', 'e_karakurt', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '3', 'k_akman', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '4', 'user_2826', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '4', 'user_9501', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '4', 'user_3556', '1');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '4', 'user_7934', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '4', 'user_4163', '3');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '4', 'user_2835', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '5', 'user_2826', '1');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '5', 'user_9501', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '5', 'user_3556', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '5', 'user_7934', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '5', 'user_4163', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '5', 'user_2835', '3');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '6', 'g_orge', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '6', 'm_vargas', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '6', 'c_ozbay', '1');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '6', 'a_kalac', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '6', 'e_karakurt', '3');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '6', 'a_aykac', '0');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '7', 'g_orge', '3');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '7', 'm_vargas', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '7', 'c_ozbay', '1');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '7', 'a_kalac', '4');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '7', 'e_karakurt', '2');
+INSERT INTO SessionSquads (session_ID, played_player_username, position_ID) VALUES ( '7', 'a_aykac', '0');
 
 DELIMITER //
 
@@ -370,6 +370,8 @@ FOR EACH ROW
 BEGIN
 	DECLARE overlap_count INT; -- timeslot
     DECLARE illegal_pos_count INT;
+    DECLARE error_message TEXT;
+    DECLARE name, surname TEXT;
     
     SELECT COUNT(*) INTO overlap_count 
     FROM SessionSquads SS, MatchSession MS_OLD, MatchSession MS_NEW
@@ -384,11 +386,14 @@ BEGIN
     WHERE PP.username=NEW.played_player_username AND PP.position=NEW.position_ID;
     
     IF overlap_count > 0 THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'This player is already playing in this timeslot.';
+    SET error_message = CONCAT(name, surname, " is already playing in this timeslot.");
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
     END IF;
     
     IF illegal_pos_count != 1 THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'This player cannot play in this position.';
+		SELECT P.name, P.surname INTO name, surname FROM Player P WHERE P.username=NEW.played_player_username;
+        SET error_message = CONCAT(name, surname, " cannot play in this position.");
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
     END IF;
     
 END;
