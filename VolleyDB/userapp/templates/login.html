@@ -5,6 +5,10 @@
 <h1>Welcome to VolleyDB</h1>
 <h3>Please sign in.</h3>
 
+{% if error %}
+    <p style="color:red;">{{error}}</p>
+{% endif %}
+
 <form>
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username"><br>

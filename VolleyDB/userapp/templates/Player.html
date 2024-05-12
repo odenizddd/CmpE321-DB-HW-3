@@ -6,6 +6,10 @@
 
 <h3>Players that you've played with at least once.</h3>
 
+{% if error %}
+    <p style="color:red;">{{error}}</p>
+{% endif %}
+
 <ul>
 {% for player in players %}
     <li>{{ player.0 }} {{player.1}}</li>

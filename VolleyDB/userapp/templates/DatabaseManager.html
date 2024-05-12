@@ -5,10 +5,22 @@
 <h1>Welcome Esteemed Database Manager</h1>
 
 
-<input type="button" value="Add New Player" onclick="window.location.href='/AddPlayer'">
-<input type="button" value="Add New Jury" onclick="window.location.href='/AddJury'">
-<input type="button" value="Add New Coach" onclick="window.location.href='/AddCoach'">
-<input type="button" value="Change Stadium Name" onclick="window.location.href='/ChangeStadiumName'">
+<input type="button" value="Add New Player">
+<input type="button" value="Add New Jury">
+<input type="button" value="Add New Coach">
+<input type="button" value="Change Stadium Name">
+
+{% if error %}
+    <p style="color:red;">{{error}}</p>
+{% endif %}
+
+<script>
+    inputs = document.querySelectorAll("input").forEach(function(inputElem, index){
+        inputElem.onclick = function(){
+            window.location.href = `/${["AddPlayer", "AddJury", "AddCoach", "ChangeStadiumName"][index]}/${window.location.href.split("/").slice(-1)[0]}`;
+        }
+    });
+</script>
 
 </body>
 </html>

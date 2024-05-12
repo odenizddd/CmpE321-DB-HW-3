@@ -7,8 +7,8 @@ urlpatterns = [
     path("Player/<str:username>", views.player),
     path("Jury/<str:username>", views.jury),
     path("Coach/<str:username>", views.coach),
-    path("AddPlayer", views.addPlayer),
-    path("AddCoach", views.addCoach),
-    path("AddJury", views.addJury),
-    path("ChangeStadiumName", views.changeStadiumName),
+    path("AddPlayer/<str:username>", views.addPlayer),
+    path("AddCoach/<str:username>", views.addCoach),
+    path("AddJury/<str:username>", views.addJury),
+    path("ChangeStadiumName/<str:username>", views.changeStadiumName),
 ]
