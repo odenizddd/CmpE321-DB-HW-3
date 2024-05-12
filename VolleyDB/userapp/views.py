@@ -155,7 +155,11 @@ def coach(request, username):
                         AND STR_TO_DATE(T.contract_start, "%d.%m.%Y") < NOW()
                         AND STR_TO_DATE(T.contract_finish, "%d.%m.%Y") > NOW();"""
             cursor.execute(query)
-            team_ID = cursor.fetchone()[0]
+            res = cursor.fetchone()
+            if res:
+                team_ID = res[0]
+            else:
+                team_ID = None
 
             query = f"""SELECT P.name, P.surname, P.username FROM Player P, PlayerTeams PT, Team T
                     WHERE T.coach_username = "{username}" AND T.team_ID = PT.team 
@@ -216,8 +220,8 @@ def addPlayer(request, username):
         except django.db.utils.DatabaseError as e:
             error = e.__cause__
             print(error)
-
-        request.session['error'] = error.__str__()
+        if error:
+            request.session['error'] = error.__str__()
         return redirect(f"/DatabaseManager/{username}")
     try:
         with connection.cursor() as cursor:
@@ -247,8 +251,8 @@ def addCoach(request, username):
         except django.db.utils.DatabaseError as e:
             error = e.__cause__
             print(error)
-
-        request.session['error'] = error.__str__()
+        if error:
+            request.session['error'] = error.__str__()
         return redirect(f"/DatabaseManager/{username}")
     return render(request, 'AddCoach.html', {"error": error})
 
@@ -271,7 +275,8 @@ def addJury(request, username):
             error = e.__cause__
             print(error)
 
-        request.session['error'] = error.__str__()
+        if error:
+            request.session['error'] = error.__str__()
         return redirect(f"/DatabaseManager/{username}")
     return render(request, 'AddJury.html', {"error": error})
 
@@ -289,7 +294,8 @@ def changeStadiumName(request, username):
         except django.db.utils.DatabaseError as e:
             error = e.__cause__
             print(error)
-        request.session['error'] = error.__str__()
+        if error:
+            request.session['error'] = error.__str__()
         return redirect(f"/DatabaseManager/{username}")
     try:
         with connection.cursor() as cursor:
