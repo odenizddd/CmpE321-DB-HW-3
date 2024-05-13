@@ -4,6 +4,10 @@
 
 <h1>Please Enter Jury Information</h1>
 
+{% if error %}
+    <p style="color:red;">{{error}}</p>
+{% endif %}
+
 <form>
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username" required><br>

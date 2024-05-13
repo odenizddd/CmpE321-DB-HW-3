@@ -4,6 +4,10 @@
 
 <h1>Welcome Esteemed Jury</h1>
 
+{% if error %}
+    <p style="color:red;">{{error}}</p>
+{% endif %}
+
 <h3>Average of rating of all the sessions you rated is : {{rating_average}} </h3>
 <h3>Total session count you've rated is: {{rating_count}}</h3>
 

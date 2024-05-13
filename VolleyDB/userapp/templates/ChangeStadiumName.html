@@ -4,6 +4,10 @@
 
 <h1>Please Enter Old And New Stadium Information</h1>
 
+{% if error %}
+    <p style="color:red;">{{error}}</p>
+{% endif %}
+
 <form>
     <label for="oldname">Old Stadium Name:</label>
     <select name="oldname">
