@@ -112,8 +112,8 @@ def coach(request, username):
         delete_ID = request.GET.get("delete_ID")
         try:
             with connection.cursor() as cursor:
-                query = "DELETE FROM MatchSession MS WHERE MS.session_ID = %s;"
-                cursor.execute(query, delete_ID)
+                query = "DELETE FROM MatchSession MS WHERE MS.session_ID=%s;"
+                cursor.execute(query, (delete_ID,))
                 connection.commit()
         except django.db.utils.DatabaseError as e:
             error = e.__cause__
